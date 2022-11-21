@@ -1,5 +1,6 @@
 package br.com.manage_cars.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,26 +8,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
 @Entity
-public class Produto {
+public class TipoServico {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_produto;
+	@Column(name = "id_tipo_servico")
+	private Long id;
 	private String descricao;
-	private Double preco;
+	private Double valor;
 
 	@ManyToOne
-	@JoinColumn(name = "usuario_id")
-	private Usuario usuario;
+	@JoinColumn(name = "servico_id")
+	private Servico servico;
 
-	public Long getId_produto() {
-		return id_produto;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_produto(Long id_produto) {
-		this.id_produto = id_produto;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getDescricao() {
@@ -37,20 +38,20 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Double getPreco() {
-		return preco;
+	public Double getValor() {
+		return valor;
 	}
 
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Servico getServico() {
+		return servico;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setServico(Servico servico) {
+		this.servico = servico;
 	}
 
 }

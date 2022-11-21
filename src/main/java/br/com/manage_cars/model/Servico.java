@@ -2,79 +2,65 @@ package br.com.manage_cars.model;
 
 import java.security.Timestamp;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.ManyToAny;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Servico {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_servico;
+	private Long id_servico;
+	private Long odomentro;
+	private String opcional;
+	private Timestamp data;
 
-	private int odomentro;
-	private Timestamp data_de_servico;
+	@ManyToOne
+	@JoinColumn(name = " cliente_id")
+	private Cliente cliente;
 
-	@ManyToAny(metaColumn = @Column)
-	private Cliente fk_cliente;
-
-	@ManyToAny(metaColumn = @Column)
-	private Tipo_servico fk_tipo_servico;
-
-	@ManyToAny(metaColumn = @Column)
-	private Veiculo fk_veiculo;
-
-	public int getId_servico() {
+	public Long getId_servico() {
 		return id_servico;
 	}
 
-	public void setId_servico(int id_servico) {
+	public void setId_servico(Long id_servico) {
 		this.id_servico = id_servico;
 	}
 
-	public int getOdomentro() {
+	public Long getOdomentro() {
 		return odomentro;
 	}
 
-	public void setOdomentro(int odomentro) {
+	public void setOdomentro(Long odomentro) {
 		this.odomentro = odomentro;
 	}
 
-	public Timestamp getData_de_servico() {
-		return data_de_servico;
+	public String getOpcional() {
+		return opcional;
 	}
 
-	public void setData_de_servico(Timestamp data_de_servico) {
-		this.data_de_servico = data_de_servico;
+	public void setOpcional(String opcional) {
+		this.opcional = opcional;
 	}
 
-	public Cliente getFk_cliente() {
-		return fk_cliente;
+	public Timestamp getData() {
+		return data;
 	}
 
-	public void setFk_cliente(Cliente fk_cliente) {
-		this.fk_cliente = fk_cliente;
+	public void setData(Timestamp data) {
+		this.data = data;
 	}
 
-	public Tipo_servico getFk_tipo_servico() {
-		return fk_tipo_servico;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setFk_tipo_servico(Tipo_servico fk_tipo_servico) {
-		this.fk_tipo_servico = fk_tipo_servico;
-	}
-
-	public Veiculo getFk_veiculo() {
-		return fk_veiculo;
-	}
-
-	public void setFk_veiculo(Veiculo fk_veiculo) {
-		this.fk_veiculo = fk_veiculo;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 }

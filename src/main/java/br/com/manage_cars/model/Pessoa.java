@@ -1,20 +1,29 @@
 package br.com.manage_cars.model;
 
-
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pessoa {
-	
+
 	@Id
-	private  Long id_pessoa;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_pessoa;
 	private Long cpf;
 	private String nome;
 	
-	private int idade;
 	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name = "funcionario_id")
+	private Funcionario funcionario;
 	
 	public Long getId_pessoa() {
 		return id_pessoa;
@@ -22,11 +31,11 @@ public class Pessoa {
 	public void setId_pessoa(Long id_pessoa) {
 		this.id_pessoa = id_pessoa;
 	}
-	public int getIdade() {
-		return idade;
+	public long getCpf() {
+		return cpf;
 	}
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setCpf(long cpf) {
+		this.cpf = cpf;
 	}
 	public String getNome() {
 		return nome;
@@ -34,13 +43,20 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Long getCpf() {
-		return cpf;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
 	
 
+	
+	
 }
